@@ -25,7 +25,13 @@ def view_budget() :
     ID = g.current_user.id
     budget = Budget.query.filter_by(user_id=ID).filter_by(month=month).order_by("-id").first()
     if budget is None :
-        return jsonify ({ }) , 404
+        budget = Budget(
+            budget = 0  ,
+            month = request.get_json().get('month') ,
+            user_id = g.current_user.id  ,
+        )
+        db.session.add(budget)
+        db.session.commit()
     return  jsonify ({
             "budget" : budget.to_json() ,
         }) , 200
