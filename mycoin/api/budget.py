@@ -26,7 +26,7 @@ def view_budget() :
     budget = Budget.query.filter_by(user_id=ID).filter_by(month=month).order_by("-id").first()
     if budget is None :
         budget = Budget(
-            budget = 0  ,
+            budget = 3000  ,
             month = request.get_json().get('month') ,
             user_id = g.current_user.id  ,
         )
