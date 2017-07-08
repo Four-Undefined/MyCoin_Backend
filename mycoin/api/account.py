@@ -92,4 +92,5 @@ def get_some() :
     some = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(5).all()
     return jsonify({
             "result" : [one.to_json() for one in some] ,
+            "count" :  len(some) ,
         }) , 200
