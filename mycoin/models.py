@@ -57,6 +57,7 @@ class Expend(db.Model) :
     id = db.Column(db.Integer,primary_key=True)
     timestamp = db.Column(db.DateTime,index=True,default=datetime.utcnow)
     date = db.Column(db.String,default="1")
+    day = db.Column(db.Integer,default=0)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     trip = db.Column(db.Float,default=0)
     edu = db.Column(db.Float,default=0)
@@ -71,9 +72,8 @@ class Expend(db.Model) :
     def get_sum(self) :
         self.sumup = self.trip + self.edu + self.diet + self.enter + self.clothes + self.normal
 
-    def get_date(self,i) :
-        self.date = u"%d月%d日" % (self.timestamp.month , self.timestamp.day-i)
-        self.month = self.timestamp.month
+    def get_date(self) :
+        self.date = u"%s月%d日" % (self.month,self.day)
 
     def to_json1(self) :
         json_expend = {
@@ -89,6 +89,19 @@ class Expend(db.Model) :
                 'expend' : self.sumup ,
                 'id' : self.id ,
         }
+        return json_expend
+
+    def to_json(self) :
+        json_expend = {
+                    '教育' : self.edu ,
+                    '一般' : self.normal ,
+                    '饮食' : self.diet ,
+                    '出行' : self.trip ,
+                    '娱乐' : self.enter ,
+                    '服饰' : self.clothes ,
+                    '总和' : self.sumup ,
+                    '日期' : self.date ,
+                }
         return json_expend
 
 class Budget(db.Model) :

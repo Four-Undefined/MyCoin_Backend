@@ -19,14 +19,12 @@ def add_comment() :
     expend.normal = request.get_json().get('normal')
     expend.clothes = request.get_json().get('clothes')
     expend.enter = request.get_json().get('enter')
+    expend.month = request.get_json().get('month')
+    expend.day = request.get_json().get('day')
+    expend.get_date()
     expend.tag = 1
     expend.get_sum()
     db.session.add(expend)
-    db.session.commit()
-    ID = expend.id
-    item = Expend.query.filter_by(id=ID).first()
-    item.get_date(0)
-    db.session.add(item)
     db.session.commit()
 
     return jsonify({
@@ -64,7 +62,7 @@ def get_seven() :
 def get_month(month) :
     one = Expend.query.filter_by(month=month).filter_by(user_id=g.current_user.id).all()
     List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
-    maxDay = seven[0]
+    maxDay = one[0]
     List = [0,0,0,0,0,0,0]
     List3 = []
     for each in one :
@@ -88,3 +86,10 @@ def get_month(month) :
             "maxExpend" : maxExpend ,
         }) , 200
 
+@api.route('/get_some/',methods=['GET'])
+@login_required
+def get_some() :
+    some = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(5).all()
+    return jsonify({
+            "result" : [one.to_json() for one in some] ,
+        }) , 200

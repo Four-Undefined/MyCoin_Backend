@@ -7,6 +7,8 @@ from . import api
 @api.route('/signin/',methods=['POST'])
 def login() :
     un = request.get_json().get('username')
+    month = request.get_json().get('month')
+    day = request.get_json().get('day')
     passwd = request.get_json().get('password')
     user = User.query.filter_by(username=un).first()
     if not user :
@@ -16,14 +18,13 @@ def login() :
     token = user.generate_auth_token()
     if len(Expend.query.filter_by(user_id=user.id).all()) == 0   :
         for i in range(2) :
+            day -= 1
             expend = Expend()
             expend.user_id = user.id
             expend.tag = 1
-            db.session.add(expend)
-            db.session.commit()
-            ID = expend.id
-            item = Expend.query.filter_by(id=ID).first()
-            item.get_date(i+1)
+            expend.day = day
+            expend.month = month
+            expend.get_date()
             db.session.add(expend)
             db.session.commit()
 

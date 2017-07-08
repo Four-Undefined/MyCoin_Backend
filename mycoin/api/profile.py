@@ -20,3 +20,11 @@ def edit_profile() :
             "avatar" : avatar ,
         }) , 200
 
+@api.route("/show_profile/",methods=['GET'])
+@login_required
+def show() :
+    ID = g.current_user.id
+    user = User.query.filter_by(id=ID).first()
+    return jsonify({
+            "username" : user.username ,
+        }) , 200
