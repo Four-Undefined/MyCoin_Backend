@@ -14,9 +14,6 @@ def login() :
     if not user.verify_password(passwd) :
         return jsonify ({}) , 401
     token = user.generate_auth_token()
-    print
-    print len(Expend.query.filter_by(user_id=user.id).all())
-    print
     if len(Expend.query.filter_by(user_id=user.id).all()) == 0   :
         for i in range(2) :
             expend = Expend()
