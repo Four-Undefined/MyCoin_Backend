@@ -1,0 +1,10 @@
+#-----------------------MyCoin-------------------
+mycoin:
+    build: . 
+    env_file:
+        - mycoin.env 
+    command: gunicorn --name mycoin -b 0.0.0.0:5488 -w 2 wsgi:app 
+    ports: 
+        - "5488:5488"
+    volumes:
+        - .:/mycoin 

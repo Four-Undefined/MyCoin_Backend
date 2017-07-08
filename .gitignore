@@ -1,0 +1,14 @@
+*.pyc
+-1
+*.log.*
+venv
+migrations
+search.db
+muxi_data.sqlite
+.idea
+.DS_Store
+*.ini
+basedir.py
+uwsgi.py
+node_modules
+*.env
