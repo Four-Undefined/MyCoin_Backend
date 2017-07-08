@@ -5,6 +5,7 @@ from .. import db
 from ..models import User
 from .decorators import login_required
 
+
 @api.route("/profile/",methods=['PUT'])
 @login_required
 def edit_profile() :
