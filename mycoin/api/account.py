@@ -94,3 +94,15 @@ def get_some() :
             "result" : [one.to_json() for one in some] ,
             "count" :  len(some) ,
         }) , 200
+
+@api.route('/get_one/<int:month>/',methods=['GET'])
+@login_required
+def get_one(month) :
+    one = Expend.query.filter_by(month=month).filter_by(user_id=g.current_user.id).all()
+    sumup = 0
+    for each in one :
+        sumup += each.sumup
+    return jsonify({
+            "sum" : sumup ,
+        }) , 200
+
