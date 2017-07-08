@@ -89,10 +89,20 @@ def get_month(month) :
 @api.route('/get_some/',methods=['GET'])
 @login_required
 def get_some() :
-    some = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(5).all()
+    each = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(1).first()
+    print(each) 
+    List = [0,0,0,0,0,0,0 ]
+    List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
+    List[0] += each.edu
+    List[1] += each.normal
+    List[2] += each.diet
+    List[3] += each.trip
+    List[4] += each.enter
+    List[5] += each.clothes
+    List[6] += each.sumup
+
     return jsonify({
-            "result" : [one.to_json() for one in some] ,
-            "count" :  len(some) ,
+            "result" : [{ "class" : i , "expend" : j } for i , j in zip(List2,List)]  ,
         }) , 200
 
 @api.route('/get_one/<int:month>/',methods=['GET'])
