@@ -39,7 +39,7 @@ def add_comment() :
 def get_seven() :
     seven = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(7).all()
     List = [0,0,0,0,0,0,0 ]
-    List2 = ['edu','normal','diet','trip','enter','clothes','sumup']
+    List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
     maxDay = seven[0]
     for each in seven :
         if each.sumup > maxDay.sumup :
@@ -63,8 +63,9 @@ def get_seven() :
 @login_required
 def get_month(month) :
     one = Expend.query.filter_by(month=month).filter_by(user_id=g.current_user.id).all()
+    List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
+    maxDay = seven[0]
     List = [0,0,0,0,0,0,0]
-    List2 = ['edu','normal','diet','trip','enter','clothes','sumup']
     List3 = []
     for each in one :
         List[0] += each.edu

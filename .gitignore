@@ -4,7 +4,7 @@
 venv
 migrations
 search.db
-muxi_data.sqlite
+*.sqlite
 .idea
 .DS_Store
 *.ini
