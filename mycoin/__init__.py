@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_debugtoolbar import DebugToolbarExtension
 from config import config
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 config_name = 'default'
 app.config.from_object(config[config_name])
 toolbar = DebugToolbarExtension(app)
