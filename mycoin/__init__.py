@@ -17,3 +17,6 @@ login_manager.session_protection = 'strong'
 
 from api import api
 app.register_blueprint(api,url_prefix='/api')
+
+from List import List
+app.register_blueprint(List,url_prefix='/List')
