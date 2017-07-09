@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from . import List
+from ..api import api
 from flask import render_template, url_for, redirect, flash, session, request
 
 @List.route('/get_seven/',methods=['GET'])

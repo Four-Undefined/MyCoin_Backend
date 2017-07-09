@@ -90,7 +90,7 @@ def get_month(month) :
 @login_required
 def get_some() :
     each = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(1).first()
-    print(each) 
+    print(each)
     List = [0,0,0,0,0,0,0 ]
     List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
     List[0] += each.edu
