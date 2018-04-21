@@ -95,4 +95,238 @@
 *** 
 
 
+## 查姓名
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/show_profile/|token:string | GET| 
 
+**URL Params: None** 
+
+**POST Data: None**
+
+**RETURN Data:**
+```
+{
+    "username" : string
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+
+*** 
+
+
+## 添加预算
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/budget/|token:string | POST | 
+
+**URL Params: None** 
+
+**POST Data:**
+```
+{
+  "budget" : int, 
+  "month" : int
+}
+```
+
+**RETURN Data:**
+```
+{
+      "budget": {
+        "budget": 1200,
+        "month": 4,
+        "user_id": 15
+    }
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+
+*** 
+
+## 查看预算
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/view_budget/|token:string | GET | 
+
+**URL Params: None** 
+
+**POST Data:**
+```
+{
+  "month" : int
+}
+```
+
+**RETURN Data:**
+```
+{
+      "budget": {
+        "budget": 1200,
+        "month": 4,
+        "user_id": 15
+    }
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
+
+
+## 添加账单
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/add_accont/|token:string | POST | 
+
+**URL Params:None** 
+
+**POST Data:**
+```
+{
+       
+    "trip" : 100,
+    "edu" : 200,
+    "diet" : 300,
+    "normal" : 400, 
+    "clothes" : 500,
+    "enter" : 10,
+    "month" : 4, 
+    "day" : 21 
+}
+```
+
+**RETURN Data:**
+```
+{
+    "expend": {
+        "date": "4月21日",
+        "id": 44,
+        "sum": 1510
+    }
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
+
+
+
+
+## 查看一周
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/get_seven/|token:string | GET | 
+
+**URL Params:None** 
+
+**POST Data: None**
+
+**RETURN Data:**
+```
+{
+    "TotalExpend": 1510,
+    "maxDay": {
+        "date": "4月21日",
+        "expend": 1510,
+        "id": 44
+    },
+    "result": [
+        {
+            "class": "教育",
+            "expend": 200
+        },
+        {
+            "class": "一般",
+            "expend": 400
+        },
+        {
+            "class": "饮食",
+            "expend": 300
+        },
+        {
+            "class": "出行",
+            "expend": 100
+        },
+        {
+            "class": "娱乐",
+            "expend": 10
+        },
+        {
+            "class": "服饰",
+            "expend": 500
+        }
+    ]
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
+
+
+## 查看一个月
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/add_month/<month:int>/|token:string | GET | 
+
+**URL Params:None** 
+
+**POST Data: None**
+
+**RETURN Data:**
+```
+{
+    "MaxClass": "服饰",
+    "maxExpend": 500,
+    "result": [
+        {
+            "class": "教育",
+            "expend": 200
+        },
+        {
+            "class": "一般",
+            "expend": 400
+        },
+        {
+            "class": "饮食",
+            "expend": 300
+        },
+        {
+            "class": "出行",
+            "expend": 100
+        },
+        {
+            "class": "娱乐",
+            "expend": 10
+        },
+        {
+            "class": "服饰",
+            "expend": 500
+        },
+        {
+            "class": "sumup",
+            "expend": 1510
+        }
+    ]
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
