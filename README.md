@@ -282,7 +282,7 @@
 ## 查看一个月
 |URL|Header|Method|
 | --- | -- | -- |
-|/api/add_month/<month:int>/|token:string | GET | 
+|/api/get_month/<month:int>/|token:string | GET | 
 
 **URL Params:None** 
 
@@ -323,6 +323,80 @@
             "expend": 1510
         }
     ]
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
+
+## 查看前一天
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/get_some/|token:string | GET | 
+
+**URL Params:None** 
+
+**POST Data: None**
+
+**RETURN Data:**
+```
+{
+    "result": [
+        {
+            "class": "教育",
+            "expend": 200
+        },
+        {
+            "class": "一般",
+            "expend": 400
+        },
+        {
+            "class": "饮食",
+            "expend": 300
+        },
+        {
+            "class": "出行",
+            "expend": 100
+        },
+        {
+            "class": "娱乐",
+            "expend": 10
+        },
+        {
+            "class": "服饰",
+            "expend": 500
+        },
+        {
+            "class": "sumup",
+            "expend": 1510
+        }
+    ]
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+*** 
+
+
+## 查看一个月的总和
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/get_one/<month:int>/|token:string | GET| 
+
+**URL Params:None** 
+
+**POST Data: None**
+
+**RETURN Data:**
+```
+{
+    "sum" : int 
+}
 ```
 
 **Status Code :**
