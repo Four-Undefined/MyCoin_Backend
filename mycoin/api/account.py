@@ -81,9 +81,10 @@ def get_month(month) :
             break
 
     return jsonify({
-            "result" : [ { "class" : i ,"expend" : j } for i , j in zip(List2,List)] ,
+            "result" : [ { "class" : i ,"expend" : j } for i , j in zip(List2[:6],List[:6])] ,
             "MaxClass" : Max ,
             "maxExpend" : maxExpend ,
+            "TotalExpend" : List[6] ,
         }) , 200
 
 @api.route('/get_some/',methods=['GET'])
