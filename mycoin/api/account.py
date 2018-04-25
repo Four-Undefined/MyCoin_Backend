@@ -12,13 +12,15 @@ def add_comment() :
     """
     加账单
     """
+    flag = 0
     month = request.get_json().get('month')
     day = request.get_json().get('day')
     user_id = g.current_user.id
     expend = Expend.query.filter_by(user_id=user_id).filter_by(month=month).filter_by(day=day).first()
     if expend is None :
         expend = Expend()
-        expend.user_id = g.current_user.id
+        expend.user_id = user_id
+        flag = 1
     def choose(a,b) :
         print(a,b)
         if b == 0 :
@@ -37,7 +39,8 @@ def add_comment() :
     expend.get_date()
     expend.tag = 1
     expend.get_sum()
-    db.session.add(expend)
+    if flag == 1 :
+        db.session.add(expend)
     db.session.commit()
 
     return jsonify({
