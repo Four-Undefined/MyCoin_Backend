@@ -17,7 +17,7 @@ def add_comment() :
     def choose(a,b) :
         print(a,b)
         if b == 0 :
-            print(type(b)
+            print(type(b))
             return a
         print(type(a))
         return b
