@@ -12,8 +12,12 @@ def add_comment() :
     """
     加账单
     """
-    expend = Expend()
-    expend.user_id = g.current_user.id
+    month = request.get_json().get('month')
+    day = request.get_json().get('day')
+    expend = Expend.query.filter_by(month=month).filter_by(day=day).fisrt()
+    if expend is None :
+        expend = Expend()
+        expend.user_id = g.current_user.id
     def choose(a,b) :
         print(a,b)
         if b == 0 :
@@ -27,8 +31,8 @@ def add_comment() :
     expend.normal = choose(expend.normal,request.get_json().get('normal'))
     expend.clothes = choose(expend.clothes,request.get_json().get('clothes'))
     expend.enter = choose(expend.enter,request.get_json().get('enter'))
-    expend.month = request.get_json().get('month')
-    expend.day = request.get_json().get('day')
+    expend.month = month
+    expend.day = day
     expend.get_date()
     expend.tag = 1
     expend.get_sum()
