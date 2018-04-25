@@ -15,8 +15,11 @@ def add_comment() :
     expend = Expend()
     expend.user_id = g.current_user.id
     def choose(a,b) :
+        print(a,b)
         if b == 0 :
+            print(type(b)
             return a
+        print(type(a))
         return b
     expend.trip = choose(expend.trip,request.get_json().get('trip'))
     expend.edu = choose(expend.edu,request.get_json().get('edu'))
