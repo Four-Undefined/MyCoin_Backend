@@ -21,12 +21,12 @@ def add_comment() :
             return a
         print(type(a))
         return b
-    expend.trip = choose(expend.trip,request.get_json().get('trip'))
-    expend.edu = choose(expend.edu,request.get_json().get('edu'))
-    expend.diet = choose(expend.diet,request.get_json().get('diet'))
-    expend.normal = choose(expend.normal,request.get_json().get('normal'))
-    expend.clothes = choose(expend.clothes,request.get_json().get('clothes'))
-    expend.enter = choose(expend.enter,request.get_json().get('enter'))
+    expend.trip = max(expend.trip,request.get_json().get('trip'))
+    expend.edu = max(expend.edu,request.get_json().get('edu'))
+    expend.diet = max(expend.diet,request.get_json().get('diet'))
+    expend.normal = max(expend.normal,request.get_json().get('normal'))
+    expend.clothes = max(expend.clothes,request.get_json().get('clothes'))
+    expend.enter = max(expend.enter,request.get_json().get('enter'))
     expend.month = request.get_json().get('month')
     expend.day = request.get_json().get('day')
     expend.get_date()
