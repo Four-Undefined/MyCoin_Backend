@@ -17,8 +17,7 @@ def add_comment() :
     def choose(a,b) :
         if b == 0 :
             return a
-        else :
-            return b
+        return b
     expend.trip = choose(expend.trip,request.get_json().get('trip'))
     expend.edu = choose(expend.edu,request.get_json().get('edu'))
     expend.diet = choose(expend.diet,request.get_json().get('diet'))
