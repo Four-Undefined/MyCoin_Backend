@@ -32,6 +32,68 @@
 
 *** 
 
+## 查重并发邮件
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/signup/unique/ | None| POST| 
+
+**URL Params: None** 
+
+**POST Data:**
+
+```
+{
+  "email" : string,
+  "username" : string
+}
+```
+**RETURN Data**
+```
+{
+    "msg": string
+}
+```
+
+**Status Code :**
+```
+200 // 成功，并发送邮件  
+403 // 用户名占用或邮箱占用
+```
+
+*** 
+
+## 验证码，注册
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/signup/captcha/ | None| POST| 
+
+**URL Params: None** 
+
+**POST Data:**
+
+```
+{
+  "email" : string,
+  "username" : string,
+  "captcha" : string,
+  "password : string
+}
+```
+**RETURN Data**
+```
+{
+    "msg": string
+}
+```
+
+**Status Code :**
+```
+200 // 注册成功 
+401 // 验证吗错误
+```
+
+*** 
+
 ## 登录
 |URL|Header|Method|
 | --- | -- | -- |
