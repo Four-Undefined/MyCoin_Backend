@@ -80,4 +80,6 @@ def check_captcha():
 
     db.session.add(user)
     db.session.commit()
-    return jsonify({}), 200
+    return jsonify({
+        "msg" : "注册成功"
+    }), 200
