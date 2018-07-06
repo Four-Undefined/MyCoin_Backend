@@ -48,7 +48,6 @@ def unique_signup():
     send_mail(email, 'MyCoin注册验证码',captcha=captcha)
     return jsonify({
         'msg' : '已发送邮件！',
-        'captcha' : captcha
     }), 200
 
 
