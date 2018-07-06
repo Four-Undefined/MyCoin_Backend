@@ -12,8 +12,10 @@ class User(db.Model, UserMixin) :
     """
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    avatar = db.Column(db.String,default="1")
-    username = db.Column(db.String(164),unique=True,index=True)
+    avatar = db.Column(db.String(164),default="1")
+    username = db.Column(db.String(20),unique=True,index=True)
+    email = db.Column(db.String(40),unique=True)
+    signup_t = db.Column(db.String(20))
     password_hash = db.Column(db.String(164))
     expends = db.relationship('Expend',backref='user',lazy='dynamic')
     budgets = db.relationship('Budget',backref='user',lazy='dynamic')
@@ -56,7 +58,7 @@ class Expend(db.Model) :
     __tablename__ = 'expend'
     id = db.Column(db.Integer,primary_key=True)
     timestamp = db.Column(db.DateTime,index=True,default=datetime.utcnow)
-    date = db.Column(db.String,default="1")
+    date = db.Column(db.String(10),default="1")
     day = db.Column(db.Integer,default=0)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     trip = db.Column(db.Float,default=0)

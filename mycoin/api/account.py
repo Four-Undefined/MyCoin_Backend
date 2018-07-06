@@ -1,7 +1,7 @@
 #coding: utf-8
 from flask import jsonify , request , g
 from . import api
-from ..models import User , Expend
+from ..models import Expend
 from ..__init__ import db
 from .decorators import login_required
 
@@ -24,10 +24,9 @@ def add_comment() :
     def choose(a,b) :
         print(a,b)
         if b == 0 :
-            print(type(b))
             return max(a,0)
-        print(type(a))
         return b
+
     expend.trip = choose(expend.trip,request.get_json().get('trip'))
     expend.edu = choose(expend.edu,request.get_json().get('edu'))
     expend.diet = choose(expend.diet,request.get_json().get('diet'))
@@ -39,14 +38,36 @@ def add_comment() :
     expend.get_date()
     expend.tag = 1
     expend.get_sum()
+
     if flag == 1 :
         db.session.add(expend)
+
+    db.session = db.session.object_session(expend)
     db.session.commit()
 
     return jsonify({
             'expend' : expend.to_json1() ,
         }) , 200
 
+
+@api.route('/get_day/',methods=['POST'])
+@login_required
+def get_day():
+    month = request.get_json().get('month')
+    day = request.get_json().get('day')
+    user_id = g.current_user.id
+    expend = Expend.query.filter_by(user_id=user_id).filter_by(month=month).filter_by(day=day).first()
+    return jsonify({
+        'expend': expend.to_json1(),
+    }), 200
+
+@api.route('/get_three/',methods=['GET'])
+@login_required
+def get_three():
+    three = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(3).all()
+    return jsonify({
+        'expend': [ expend.to_json() for expend in three],
+    }), 200
 
 @api.route('/get_seven/',methods=['GET'])
 @login_required
