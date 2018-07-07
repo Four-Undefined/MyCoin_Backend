@@ -62,10 +62,10 @@ def get_day():
         'expend': expend.to_json1(),
     }), 200
 
-@api.route('/get_three/',methods=['GET'])
+@api.route('/get_two/',methods=['GET'])
 @login_required
-def get_three():
-    three = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(3).all()
+def get_two():
+    three = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(2).all()
     return jsonify({
         'expend': [ expend.to_json() for expend in three],
     }), 200
