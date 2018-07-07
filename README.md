@@ -94,6 +94,54 @@
 
 *** 
 
+## 校园卡消费记录
+|URL|Header|Method|
+| --- | -- | -- |
+|/api/card/| None| GET| 
+
+**URL Params:** 
+
+```
+    "time" : string,
+    "sid" : string,
+```
+
+**POST Data: None**
+
+**RETURN Data**
+```
+{
+    "response": {
+        "list": [
+            {
+                "data": [
+                    {
+                        "date": "昨天",
+                        "smtDealDateTimeTxt": "2018-07-05 11:49:09",
+                        "smtDealName": "消费",
+                        "smtInMoney": "41.06",
+                        "smtOrgName": "卤肉饭",
+                        "smtOutMoney": "30.06",
+                        "smtTransMoney": "11.0",
+                        "time": "11:49"
+                    }
+                ],
+                "title": "2018-07"
+            }
+        ],
+        "msg": "",
+        "result": true
+    }
+}
+```
+
+**Status Code :**
+```
+200 // 成功 
+```
+
+*** 
+
 ## 登录
 |URL|Header|Method|
 | --- | -- | -- |
