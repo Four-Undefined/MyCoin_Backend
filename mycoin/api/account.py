@@ -1,4 +1,5 @@
 #coding: utf-8
+import requests
 from flask import jsonify , request , g
 from . import api
 from ..models import Expend
@@ -154,3 +155,28 @@ def get_one(month) :
             "sum" : sumup ,
         }) , 200
 
+
+@api.route('/card/',methods=['GET'])
+def card():
+    """
+    获取到校园卡账单信息
+    :return:
+    """
+    stime = request.args.get('time')
+    sid = request.args.get('sid')
+    url = 'http://weixin.ccnu.edu.cn/App/weixin/queryTrans'
+    headers = {
+        "Content - Type": "application/json",
+        "Cookie": "ASP.NET_SessionId=xmc4qqukczkz1ljlxtsteaqb; wxqyuserid=%s" % sid,
+    }
+    params = {
+        "page": 1,
+        "pageSize": 200,
+        "startTime": stime,
+        "endTime": stime,
+    }
+    r = requests.get(url,params=params,headers=headers)
+
+    return jsonify({
+        'response' : r.json(),
+    }) ,200
