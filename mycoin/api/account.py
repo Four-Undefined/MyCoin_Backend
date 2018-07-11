@@ -65,7 +65,7 @@ def get_day():
 @api.route('/get_two/',methods=['GET'])
 @login_required
 def get_two():
-    three = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(2).all()
+    three = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-month").order_by("-day").limit(2).all()
     return jsonify({
         'expend': [ expend.to_json() for expend in three],
     }), 200
@@ -73,7 +73,7 @@ def get_two():
 @api.route('/get_seven/',methods=['GET'])
 @login_required
 def get_seven() :
-    seven = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-id").limit(7).all()
+    seven = Expend.query.filter_by(user_id=g.current_user.id).filter_by(tag=1).order_by("-month").order_by("-day").limit(7).all()
     List = [0,0,0,0,0,0,0 ]
     List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
     maxDay = seven[0]
@@ -128,7 +128,7 @@ def get_month(month) :
 @api.route('/get_some/',methods=['GET'])
 @login_required
 def get_some() :
-    each = Expend.query.filter_by(user_id=g.current_user.id).order_by('-id').limit(1).first()
+    each = Expend.query.filter_by(user_id=g.current_user.id).order_by("-month").order_by("-day").limit(1).first()
     print(each)
     List = [0,0,0,0,0,0,0 ]
     List2 = ['教育','一般','饮食','出行','娱乐','服饰','sumup']
