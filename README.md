@@ -216,7 +216,8 @@
 **RETURN Data:**
 ```
 {
-    "username" : string
+    "username" : string,
+    "avatar" : string
 }
 ```
 
