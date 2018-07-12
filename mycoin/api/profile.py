@@ -28,4 +28,5 @@ def show() :
     user = User.query.filter_by(id=ID).first()
     return jsonify({
             "username" : user.username ,
+            "avatar" : user.avatar,
         }) , 200
