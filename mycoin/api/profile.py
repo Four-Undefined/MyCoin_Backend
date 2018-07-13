@@ -15,6 +15,7 @@ def edit_profile() :
     ID = g.current_user.id
     user = User.query.filter_by(id=ID).first()
     avatar = request.get_json().get('avatar')
+    user.avatar = avatar
     db.session.add(user)
     db.session.commit()
     return jsonify ({
