@@ -14,7 +14,7 @@ def signup() :
     user = User(
         username = un ,
         password = passwd ,
-        avatar = u"https://avatars2.githubusercontent.com/u/24372759?v=3&s=460"
+        avatar = u"http://ohr9krjig.bkt.clouddn.com/user_avatar.png"
         )
     db.session.add(user)
     db.session.commit()
